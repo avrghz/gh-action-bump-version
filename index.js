@@ -59,10 +59,10 @@ const performUpdateOnActualBranch = async (tools, current, version, currentBranc
 const pushChanges = async (tools, tag) => {
   const remoteRepo = `https://${process.env.GITHUB_ACTOR}:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
   // console.log(Buffer.from(remoteRepo).toString('base64'))
-  // await tools.runInWorkspace("git", ["tag", tag]);
-  // await tools.runInWorkspace("git", ["push", remoteRepo, "--follow-tags"]);
-  // await tools.runInWorkspace("git", ["push", remoteRepo, "--tags"]);
-  await tools.runInWorkspace("git", ["push", remoteRepo]);
+  await tools.runInWorkspace("git", ["tag", tag]);
+  await tools.runInWorkspace("git", ["push", remoteRepo, "--follow-tags"]);
+  await tools.runInWorkspace("git", ["push", remoteRepo, "--tags"]);
+  // await tools.runInWorkspace("git", ["push", remoteRepo]);
 };
 
 Toolkit.run(async (tools) => {
