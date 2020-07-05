@@ -63,7 +63,7 @@ Toolkit.run(async (tools) => {
     // newVersion = `${process.env["INPUT_TAG-PREFIX"]}${newVersion}`;
     // console.log("new version:", newVersion);
 
-    console.log("PACKAGEJSON_DIR 3", process.env["INPUT_SUB-PACKAGE"]);
+    console.log("PACKAGEJSON_DIR 3", process.env["INPUT_SUB-PACKAGE"], process.env["INPUT_TAG-PREFIX"]);
 
     const remoteRepo = `https://${process.env.GITHUB_ACTOR}:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
     // console.log(Buffer.from(remoteRepo).toString('base64'))
