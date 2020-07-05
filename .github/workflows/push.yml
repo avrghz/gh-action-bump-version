@@ -28,6 +28,7 @@ jobs:
         uses: "avrghz/gh-action-bump-version@custom"
         with:
           tag-prefix: ""
+          PACKAGEJSON_DIR: "frontend"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
