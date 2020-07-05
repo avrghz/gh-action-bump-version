@@ -68,6 +68,15 @@ Toolkit.run(async (tools) => {
     await tools.runInWorkspace("npm", ["version", "--allow-same-version=true", "--git-tag-version=false", current]);
     console.log("current:", current, "/", "version:", version);
     let newVersion = execSync(`npm version --git-tag-version=false ${version}`).toString().trim();
+
+    if (process.env["INPUT_SUB-PACKAGE"]) {
+      console.log("Change sub package started");
+      process.chdir(`${process.env.GITHUB_WORKSPACE}/${process.env["INPUT_SUB-PACKAGE"]}`);
+      const updatedSubVersion = execSync(`npm version --git-tag-version=false ${newVersion}`).toString().trim();
+      console.log(`{Update version ${process.env["INPUT_SUB-PACKAGE"]}}`, updatedSubVersion);
+      process.chdir(process.env.GITHUB_WORKSPACE);
+    }
+
     await tools.runInWorkspace("git", ["commit", "-a", "-m", `ci: ${commitMessage} ${newVersion}`]);
 
     // now go to the actual branch to perform the same versioning
@@ -76,14 +85,6 @@ Toolkit.run(async (tools) => {
     console.log("current:", current, "/", "version:", version);
     newVersion = execSync(`npm version --git-tag-version=false ${version}`).toString().trim();
     newVersion = `${process.env["INPUT_TAG-PREFIX"]}${newVersion}`;
-
-    if (process.env["INPUT_SUB-PACKAGE"]) {
-      console.log("Change sub package started");
-      process.chdir(`${process.env.GITHUB_WORKSPACE}/${process.env["INPUT_SUB-PACKAGE"]}`);
-      let test = execSync(`npm version --git-tag-version=false ${version}`).toString().trim();
-      console.log("react version ", test);
-      process.chdir(process.env.GITHUB_WORKSPACE);
-    }
 
     console.log("new version:", newVersion);
     const remoteRepo = `https://${process.env.GITHUB_ACTOR}:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
