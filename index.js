@@ -92,10 +92,10 @@ Toolkit.run(async (tools) => {
 
     // do it in the current checked out github branch (DETACHED HEAD)
     // important for further usage of the package.json version
-    let newVersion = await performUpdateOnCurrentBranch(tools, current, version, commitMessage);
+    const newVersion = await performUpdateOnCurrentBranch(tools, current, version, commitMessage);
 
     // now go to the actual branch to perform the same versioning
-    let tag = performUpdateOnActualBranch(tools, current, version, currentBranch);
+    const tag = await performUpdateOnActualBranch(tools, current, version, currentBranch);
 
     console.log("new version:", newVersion);
 
