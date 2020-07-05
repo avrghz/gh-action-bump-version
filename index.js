@@ -7,11 +7,11 @@ const { execSync } = require("child_process");
 //   process.chdir(process.env.GITHUB_WORKSPACE);
 // }
 
-console.log("PACKAGEJSON_DIR 1", process.env.PACKAGEJSON_DIR);
+console.log("PACKAGEJSON_DIR 1", process.env["INPUT_SUB-PACKAGE"]);
 
 // Run your GitHub Action!
 Toolkit.run(async (tools) => {
-  console.log("PACKAGEJSON_DIR 2", process.env.PACKAGEJSON_DIR);
+  console.log("PACKAGEJSON_DIR 2", process.env["INPUT_SUB-PACKAGE"]);
   const pkg = tools.getPackageJSON();
   const event = tools.context.payload;
 
@@ -63,7 +63,7 @@ Toolkit.run(async (tools) => {
     // newVersion = `${process.env["INPUT_TAG-PREFIX"]}${newVersion}`;
     // console.log("new version:", newVersion);
 
-    console.log("PACKAGEJSON_DIR 3", process.env.PACKAGEJSON_DIR);
+    console.log("PACKAGEJSON_DIR 3", process.env["INPUT_SUB-PACKAGE"]);
 
     const remoteRepo = `https://${process.env.GITHUB_ACTOR}:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
     // console.log(Buffer.from(remoteRepo).toString('base64'))

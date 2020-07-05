@@ -8,10 +8,10 @@ branding:
   color: blue
 inputs:
   tag-prefix:
-    description: 'Prefix that is used for the git tag'
-    default: ''
+    description: "Prefix that is used for the git tag"
+    default: ""
     required: false
-  PACKAGEJSON_DIR:
-    description: 'Custom dir to the package'
-    default: ''
+  sub-package:
+    description: "Custom dir to the package"
+    default: ""
     required: false
