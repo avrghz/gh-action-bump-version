@@ -3,7 +3,7 @@ name: "Bump Version"
 on:
   push:
     branches:
-      - "custom"
+      - "master"
 
 jobs:
   bump-version:
@@ -25,7 +25,7 @@ jobs:
           node-version: 12
 
       - name: "Automated Version Bump"
-        uses: "avrghz/gh-action-bump-version@custom"
+        uses: "avrghz/gh-action-bump-version@master"
         with:
           tag-prefix: ""
           sub-package: "react"
