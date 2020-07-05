@@ -28,7 +28,7 @@ jobs:
         uses: "avrghz/gh-action-bump-version@custom"
         with:
           tag-prefix: ""
-          sub-package: "frontend"
+          sub-package: "react"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
