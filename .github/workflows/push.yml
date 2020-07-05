@@ -3,7 +3,7 @@ name: "Bump Version"
 on:
   push:
     branches:
-      - "master"
+      - "custom"
 
 jobs:
   bump-version:
@@ -15,17 +15,21 @@ jobs:
         uses: "actions/checkout@v2"
         with:
           ref: ${{ github.ref }}
+
       - name: "cat package.json"
         run: cat ./package.json
+
       - name: "Setup Node.js"
         uses: "actions/setup-node@v1"
         with:
           node-version: 12
+
       - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
+        uses: "avrghz/gh-action-bump-version@custom"
         with:
-          tag-prefix: ''
+          tag-prefix: ""
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: "cat package.json"
         run: cat ./package.json
