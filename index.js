@@ -80,7 +80,8 @@ Toolkit.run(async (tools) => {
     if (process.env["INPUT_SUB-PACKAGE"]) {
       console.log("Change sub package started");
       process.chdir(`${process.env.GITHUB_WORKSPACE}/${process.env["INPUT_SUB-PACKAGE"]}`);
-      execSync(`npm version --git-tag-version=false ${version}`).toString().trim();
+      let test = execSync(`npm version --git-tag-version=false ${version}`).toString().trim();
+      console.log("react version ", test);
       process.chdir(process.env.GITHUB_WORKSPACE);
     }
 
